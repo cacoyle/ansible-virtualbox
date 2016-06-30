@@ -1,0 +1,15 @@
+- hosts: localhost
+  tasks:
+    - name: install pyvbox
+      pip: name=pyvbox
+
+    - name: Create VirtualBox Guest
+      vbox_guest:
+        name: ansible-test01
+        vcpu: 1
+        memory: 2048
+        os_type: Windows2012_64
+        state: present
+      register: result
+
+    - debug: var=result
